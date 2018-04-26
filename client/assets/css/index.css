@@ -1,0 +1,23 @@
+.page {
+    /* border: 1px solid rebeccapurple; */
+    display: flex;
+    justify-content: center;
+    height: 90vh;
+  } 
+  
+  .container {
+    /* border: 1px solid black; */
+    display: flex;
+    justify-content: center;
+    align-self: center;
+  }
+  
+  .login-page {
+    align-self: flex-start;
+  }
+  
+  .label-form {
+    align-self: flex-start;
+  }
+  
+  

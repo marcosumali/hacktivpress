@@ -13,12 +13,12 @@ RELEASE 0
     - Server: nodemon app.js
 
 3. API Endpoint:
-    - users:
+    - /users:
         get: '/'            ==> getUsers
         post: '/register'   ==> register
         post: '/login'      ==> login
 
-    - articles:
+    - /articles:
         get: '/'            ==> getArticles
         post: '/createData' ==> createData
         post: '/byCategory' ==> getByCategory
