@@ -14,4 +14,14 @@ RELEASE 0
 
 3. API Endpoint:
     - users:
+        get: '/'            ==> getUsers
+        post: '/register'   ==> register
+        post: '/login'      ==> login
+
     - articles:
+        get: '/'            ==> getArticles
+        post: '/createData' ==> createData
+        post: '/byCategory' ==> getByCategory
+        post: '/byAuthor'   ==> getByAuthor
+        put: '/update'      ==> updateData
+        delete: '/delete'   ==> deleteData
