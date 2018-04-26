@@ -94,8 +94,8 @@ class ControllerUser {
 
 
     static createData (req,res) {
-        let {title,content,category,Author} = req.body;
-        let token = req.header('token');
+        let {title,content,category,token} = req.body;
+        // let token = req.header('token');
         // console.log(token);
 
         if(token) {

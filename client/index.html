@@ -38,7 +38,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">Blogs <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="blogs.html">Blogs <span class="sr-only">(current)</span></a>
                 </li>
               </ul>
               <form class="form-inline my-2 my-lg-0">
@@ -137,24 +137,24 @@
             },
             login () {
                 let userObj = {
-                username: this.username,
-                password: this.password,
-            }
+                    username: this.username,
+                    password: this.password,
+                }
             
-            axios.post('http://localhost:3000/users/login', userObj)
-                .then((result) => {
-                    console.log('result login',result)
-                
-                    localStorage.setItem('token', result.data.token);
+                axios.post('http://localhost:3000/users/login', userObj)
+                    .then((result) => {
+                        console.log('result login',result)
                     
-                    setTimeout(function (){
-                        // window.location.href = 'blogs.html';
-                    }, 2000);
-                })
-                .catch((error) => {
-                    console.log('error login',error)
-                });
-            }
+                        localStorage.setItem('token', result.data.token);
+                        
+                        setTimeout(function (){
+                            // window.location.href = 'blogs.html';
+                        }, 2000);
+                    })
+                    .catch((error) => {
+                        console.log('error login',error)
+                    });
+                }
         }
     })
 
