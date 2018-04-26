@@ -9,8 +9,9 @@ var router = express.Router();
 // });
 
 router
-  .get('/',)
-  .post('/save',)
+  .get('/', ControllerUser.getUsers)
+  .post('/register', ControllerUser.register)
+  .post('/login', ControllerUser.login)
 
 
 
