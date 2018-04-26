@@ -44,9 +44,14 @@ class ControllerUser {
         } else {
             newUser.save()
             .then(result => {
+
+                let token = jwt.sign({id: result.id}, secretKey);
+                console.log(token);
+
                 res.status(201).json({
                     message: 'New user registration successful !',
-                    result
+                    result,
+                    token
                 })
             })
             .catch(error => {
@@ -72,13 +77,16 @@ class ControllerUser {
 
             } else {
 
+                let token = jwt.sign({id: result.id}, secretKey);
+                console.log(token);
+
                 let hashCheck = bcrypt.compareSync(password, result.password); // true
-                console.log('==================', hashCheck);
 
                 if (hashCheck == true) {
                     res.status(200).json({
                         message: 'User login successful !',
-                        result
+                        result,
+                        token
                     })
 
                 } else {
