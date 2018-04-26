@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- AXIOS -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- Vue Js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- ANIMATE CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    
+    <!-- Index CSS -->
+    <link rel="stylesheet" href="./assets/css/index.css">
+
+    <title>Hacktivpress.com</title>
+</head>
+
+<body>
+
+    <section id="app">
+        
+        <!-- =======================NAVIGATION BAR======================= -->
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Hacktivpress.com</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Blogs <span class="sr-only">(current)</span></a>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                <button class="button btn btn-info my-2 my-sm-0" type="submit">Sign Out</button>
+              </form>
+            </div>
+        </nav>
+        
+        <!-- =======================HOME PAGE======================= -->
+
+        <div class="page col-md-8 offset-md-2">
+            <div class="container col-md-5">
+              <div class="jumbotron login-page col-md-12">
+                <div class="items-heading col-md-12">
+                  <h1>LOGIN</h1>
+                </div>
+                <div class="items-login col-md-12">
+                  <form>
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1" class="label-form">Username</label>
+                      <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Your username..." v-model="username" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1" class="label-form">Password</label>
+                      <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="Your password..." v-model="password" required>
+                    </div>
+                    <button class="btn btn-info" @click="login">LOGIN</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+      
+            <div class="container col-md-5">
+              <div class="jumbotron login-page col-md-12">
+                <div class="items-heading col-md-12">
+                  <h1>REGISTER</h1>
+                </div>
+                <div class="items-login col-md-12">
+                  <form>
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1" class="label-form">Username</label>
+                      <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Your username..." v-model="regusername" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1" class="label-form">Password</label>
+                      <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="Your password..." v-model="regpassword" required>
+                    </div>
+                    <button class="btn btn-info" @click="register">JOIN !</button>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+      
+          </div>
+      
+
+
+
+    </section>
+
+    <script>
+    new Vue({
+        el: '#app',
+        data: {
+            username: '',
+            password: '',
+            regusername: '',
+            regpassword: ''
+        },
+        component: {
+        },
+        created: function() {
+        },
+        methods: {
+            register () {
+                let userObj = {
+                    username: this.regusername,
+                    password: this.regpassword
+                }
+                console.log(userObj)
+                
+                axios.post('http://localhost:3000/users/register', userObj)
+                    .then((result) => {
+                        console.log('ini register',result)
+
+                        localStorage.setItem('token', result.data.token);
+                       
+                        setTimeout(function (){
+                            // window.location.href = 'blogs.html';
+                        }, 2000);
+                    })
+                    .catch(function (error) {
+                        console.log('error register',error);
+                    });
+            },
+            login () {
+                let userObj = {
+                username: this.username,
+                password: this.password,
+            }
+            
+            axios.post('http://localhost:3000/users/login', userObj)
+                .then((result) => {
+                    console.log('result login',result)
+                
+                    localStorage.setItem('token', result.data.token);
+                    
+                    setTimeout(function (){
+                        // window.location.href = 'blogs.html';
+                    }, 2000);
+                })
+                .catch((error) => {
+                    console.log('error login',error)
+                });
+            }
+        }
+    })
+
+    
+    </script>
+
+
+</body>
+
+</html>
